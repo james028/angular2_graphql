@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ArticleService } from './article.service';
-import { ArticleItem } from "./article";
 import { client } from './graphql.client';
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { Apollo } from 'angular2-apollo';
+import { ListGraphql } from './list.graphql';
 
 
 @Component({
@@ -14,8 +14,9 @@ import { Apollo } from 'angular2-apollo';
 export class ArticleComponent implements OnInit {
 
 
-  constructor(
-    private apollo: Apollo) {}
+  constructor(private apollo: Apollo) {
+
+  }
 
 
   ngOnInit() {
@@ -25,9 +26,7 @@ export class ArticleComponent implements OnInit {
   loadProjects() {
     this.apollo.watchQuery({
       query: this.ProjectsQuery,
-      variables: {
-        status: this.selectedStatus,
-      },
+    
     })
       .map(result => result.data.projects.edges.map(item => item.node))
       .subscribe(projects => {
@@ -40,20 +39,8 @@ export class ArticleComponent implements OnInit {
 
 
 
-
-
-
-
-
 //const ProjectsQuery = gqlquery, getProjects($status: String) {
-//projects (status: $status){
-  //edges {
-    //node {
-      //id
-      //name
-    //}
-  //}
-//}
+
 //};
   
 
