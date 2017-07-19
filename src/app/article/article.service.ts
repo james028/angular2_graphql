@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { ArticleItem } from "./article";
-import { client } from './graphql.client'
+import { client } from './graphql.client';
 
 @Injectable()
 
@@ -30,4 +30,6 @@ export class ArticleService {
         console.error(error);
         return Observable.throw(error || "Server Error");
     }
+
+    
 }

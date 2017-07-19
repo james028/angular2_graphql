@@ -1,24 +1,6 @@
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: '/graphql',
-    opts: {
-      credentials: 'same-origin',
-    },
-  }),
+export const client = new ApolloClient({
+  networkInterface: createNetworkInterface('https://mobileapi.wp.pl/v1/graphql'),
 });
-export {
-  client
-}
 
-const ProjectsQuery = gqlquery, getProjects($status: String) => {
-projects (status: $status){
-  edges {
-    node {
-      id
-      name
-    }
-  }
-}
-};

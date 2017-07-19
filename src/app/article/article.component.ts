@@ -5,6 +5,7 @@ import { client } from './graphql.client';
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { Apollo } from 'angular2-apollo';
 
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -14,8 +15,7 @@ export class ArticleComponent implements OnInit {
 
 
   constructor(
-    private apollo: Apollo,
-  ) {}
+    private apollo: Apollo) {}
 
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class ArticleComponent implements OnInit {
 
   loadProjects() {
     this.apollo.watchQuery({
-      query: ProjectsQuery,
+      query: this.ProjectsQuery,
       variables: {
         status: this.selectedStatus,
       },
@@ -35,7 +35,27 @@ export class ArticleComponent implements OnInit {
       });
   }
 
+
+
+
+
+
+
+
+
+
+
+//const ProjectsQuery = gqlquery, getProjects($status: String) {
+//projects (status: $status){
+  //edges {
+    //node {
+      //id
+      //name
+    //}
+  //}
+//}
+//};
   
 
-Ge: number = 34;
+//Ge: number = 34;
 }
