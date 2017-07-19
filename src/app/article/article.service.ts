@@ -1,33 +1,38 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs/Observable";
 import {Http, Response} from "@angular/http";
-import 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import { client } from './graphql.client';
+import { Angular2Apollo } from 'angular2-apollo';
+
+import gql from 'graphql-tag';
 
 @Injectable()
 
 export class ArticleService {
     
-    private _url: string = 'https://mobileapi.wp.pl/v1/graphql';
-
-    constructor(private _http: Http) {
-
-    }
-
-    getArt(): Observable<any> {
-        return this._http.get(this._url)
-        .map((response:Response) => response.json())
-        .catch(this._errorHandler);
-
-    }
-
-    _errorHandler(error: Response) {
-        console.error(error);
-        return Observable.throw(error || "Server Error");
-    }
-
     
+constructor(private apollo: Angular2Apollo) {
+    const query$ = apollo.query({
+        query:  gql`
+          {
+  articles(limit: 4, t: Article) {
+    id
+    title
+    url
+    author {
+      name
+    }
+  }
+}
+        `
+    });
+    let subscription = query$.subscribe({
+        next: result => {
+            //result.data.articles;
+        },
+        error: error => {
+            console.log('Erorr: $(error.message)');
+        }
+    });
+  } 
+
+
 }

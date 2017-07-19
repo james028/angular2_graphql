@@ -7,6 +7,16 @@ import { ArticleComponent } from './article/article.component';
 
 import { ArticleService } from './article/article.service';
 
+//import { ApolloClient } from 'apollo-client';
+//import { ApolloModule } from 'apollo-angular';
+
+
+//const client = new ApolloClient();
+
+//export function provideClient(): ApolloClient {
+  //return client;
+//}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +25,7 @@ import { ArticleService } from './article/article.service';
   imports: [
     BrowserModule,
     HttpModule
+    //ApolloModule.forRoot(provideClient) 
   ],
   providers: [
     ArticleService
