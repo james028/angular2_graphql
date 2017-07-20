@@ -4,18 +4,19 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './article/article.component';
-
 import { ArticleService } from './article/article.service';
 
-//import { ApolloClient } from 'apollo-client';
-//import { ApolloModule } from 'apollo-angular';
+import { ApolloClient } from 'apollo-client';
+import { ApolloModule } from 'angular2-apollo';
+import { Angular2Apollo } from 'angular2-apollo';
 
 
-//const client = new ApolloClient();
+// Create the client as outlined above
+const client = new ApolloClient();
 
-//export function provideClient(): ApolloClient {
-  //return client;
-//}
+export function provideClient(): ApolloClient {
+  return client;
+}
 
 @NgModule({
   declarations: [
@@ -24,8 +25,8 @@ import { ArticleService } from './article/article.service';
   ],
   imports: [
     BrowserModule,
-    HttpModule
-    //ApolloModule.forRoot(provideClient) 
+    HttpModule,
+    ApolloModule.withClient(provideClient)
   ],
   providers: [
     ArticleService
@@ -33,3 +34,5 @@ import { ArticleService } from './article/article.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

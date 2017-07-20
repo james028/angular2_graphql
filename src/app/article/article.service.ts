@@ -10,7 +10,7 @@ export class ArticleService {
     
     
 constructor(private apollo: Angular2Apollo) {
-    const query$ = apollo.query({
+    let Query = apollo.query({
         query:  gql`
           {
   articles(limit: 4, t: Article) {
@@ -24,7 +24,7 @@ constructor(private apollo: Angular2Apollo) {
 }
         `
     });
-    let subscription = query$.subscribe({
+    let subscription = Query.subscribe({
         next: result => {
             //result.data.articles;
         },
