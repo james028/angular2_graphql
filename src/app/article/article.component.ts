@@ -4,6 +4,7 @@ import { ArticleService } from './article.service';
 import { client } from './graphql.client';
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { Angular2Apollo, ApolloQueryObservable } from 'angular2-apollo';
+import { Art } from './article';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -20,7 +21,8 @@ import gql from 'graphql-tag';
 })
 export class ArticleComponent implements OnInit {
 
-arti: Observable<any>;
+public articles: Observable<any[]>;
+
 
   constructor(private apollo: Angular2Apollo) {
 
@@ -28,8 +30,8 @@ arti: Observable<any>;
 
 
   ngOnInit() {
-    this.arti = this.apollo.watchQuery({query: Query}).
-    map(({data}) =>data.articles);
+    this.articles = this.apollo.watchQuery({query: Query}).
+    map(({data}) => data.articles.title);
   }
 Ge: string = "uuu";
 }
